@@ -3,7 +3,8 @@ name: Register API Definition to Azure API Center
 #on:
   #workflow_dispatch:
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
