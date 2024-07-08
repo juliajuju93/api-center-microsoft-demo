@@ -14,7 +14,7 @@ permissions:
 env:
   RESOURCE_GROUP: juliakplayground             # set this to your Azure API Center resourge group name
   SERVICE_NAME: api-center-microsoft-demo      # set this to your Azure API Center service name
-  FILE_LOCATION: https://raw.githubusercontent.com/juliajuju93/webAPIBuild2024/main/openapi-webapibuild2024.json
+  FILE_LOCATION: "./APIs/openapi-webapibuild2024.json"
 
 jobs:
   register:
