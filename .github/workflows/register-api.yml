@@ -14,7 +14,7 @@ permissions:
 env:
   RESOURCE_GROUP: juliakplayground             # set this to your Azure API Center resourge group name
   SERVICE_NAME: api-center-microsoft-demo      # set this to your Azure API Center service name
-  FILE_LOCATION: "./APIs/api-with-examples.json"
+  FILE_LOCATION: ./APIs/openai.json
 
 jobs:
   register:
