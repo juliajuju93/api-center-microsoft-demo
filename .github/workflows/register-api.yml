@@ -1,0 +1,45 @@
+name: Register API Definition to Azure API Center
+# this will tell github when to run it
+#on:
+  #workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  RESOURCE_GROUP: juliakplayground             # set this to your Azure API Center resourge group name
+  SERVICE_NAME: api-center-microsoft-demo      # set this to your Azure API Center service name
+  FILE_LOCATION: https://raw.githubusercontent.com/juliajuju93/webAPIBuild2024/main/openapi-webapibuild2024.json
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    # Please configure the environment name required in federated identity credential
+    # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+
+      # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-azure
+      # https://github.com/marketplace/actions/azure-login#login-with-openid-connect-oidc-recommended
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Please create following environment variables to deploy to azure resource: RESOURCE_GROUP, SERVICE_NAME, FILE_LOCATION
+      # RESOURCE_GROUP: Azure Resource Group name, please ensure the resource group already created.
+      # SERVICE_NAME: Azure API Center resource name, please ensure the API Center resource already created.
+      # FILE_LOCATION: API Definition file location
+      # https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository
+      - name: Register to API Center
+        uses: azure/CLI@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az apic api register -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-location ${{ env.FILE_LOCATION }}
