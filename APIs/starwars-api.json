@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "APICenter-starwars api",
-    "version": "05-17-2024",
+    "version": "07-08-2024",
     "description": "TEST TEST TEST"
   },
   "host": "swapi.co",
