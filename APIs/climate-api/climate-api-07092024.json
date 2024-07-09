@@ -11,7 +11,7 @@
         "name": "Climate FieldView Support"
       },
       "description": "All endpoints are only accessible via HTTPS.",
-      "title": "Climate API",
+      "title": "climate-api",
       "version": "07-09-2024",
       "x-apisguru-categories": [
         "open_data"
