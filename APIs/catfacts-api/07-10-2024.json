@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "catfacts-api",
-        "version": "07-00-2024"
+        "version": "07-10-2024"
     },
     "paths": {
         "/breeds": {
