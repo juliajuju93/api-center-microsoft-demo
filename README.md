@@ -1,1 +1,1 @@
-# api-center-contoso
+# api-center-microsoft-demo
