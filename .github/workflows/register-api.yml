@@ -18,7 +18,7 @@ env:
   # set this to your Azure API Center service name
   SERVICE_NAME: api-center-microsoft-demo
   # set this to the location of your API definition file
-  FILE_LOCATION: ./APIs/catfacts-api/07-10-2024.json
+  FILE_LOCATION: ./APIs/climate-api/07-10-2024.json
 
 jobs:
   register:
