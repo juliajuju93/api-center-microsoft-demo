@@ -18,9 +18,11 @@ env:
   # set this to your Azure API Center service name
   SERVICE_NAME: api-center-microsoft-demo
   # set this to the location of your API definition file
-  FILE_LOCATION: ./APIs/starwars-api/07-11-2024.json
+  API_FILE_LOCATION: ./APIs/starwars-api/07-11-2024.json
   # set this to the API ID
   API_ID: starwars-api
+  # set this to the location of your metadata file
+  METADATA_FILE_LOCATION: ./APIs/starwars-api/metadata.json
 
 jobs:
   register:
@@ -48,11 +50,11 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az apic api register -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-location ${{ env.FILE_LOCATION }}
+            az apic api register -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-location ${{ env.API_FILE_LOCATION }}
 
       - name: Configure custom metadata in API Center
         uses: azure/CLI@v2
         with:
           azcliversion: latest
           inlineScript: |
-            az apic api update -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-id ${{ env.API_ID }} --summary "GitHub Action Test02"
+            az apic api update -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-id ${{ env.API_ID }} --custom-properties ${{ env.METADATA_FILE_LOCATION }}
