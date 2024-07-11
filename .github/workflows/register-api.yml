@@ -19,6 +19,8 @@ env:
   SERVICE_NAME: api-center-microsoft-demo
   # set this to the location of your API definition file
   FILE_LOCATION: ./APIs/starwars-api/07-15-2024.json
+  # set this to the API ID
+  API_ID: <Name_your_API_ID>
 
 jobs:
   register:
@@ -47,3 +49,10 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az apic api register -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-location ${{ env.FILE_LOCATION }}
+
+      - name: Configure custom metadata in API Center
+        uses: azure/CLI@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az apic api update -g ${{ env.RESOURCE_GROUP }} -n ${{ env.SERVICE_NAME }} --api-id ${{ env.API_ID }} --summary "GitHub Action Test"
